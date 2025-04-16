@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Passenger Transport</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: 'Cormorant Infant', serif;
+      background-image: url('/assests/busss.png');
+      background-size: 180%;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+    }
+
+    .navbar {
+      position: absolute;
+      width: 100%;
+      background: transparent !important;
+    }
+
+    .navbar-nav .nav-item {
+      margin: 0 30px;
+    }
+
+    .navbar-nav .nav-link {
+      color: white !important;
+      font-weight: light;
+      font-size: 18px;
+    }
+
+    .hero {
+      height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+      padding-left: 50px;
+    }
+
+    .hero-content {
+      max-width: 700px;
+      text-align: left;
+      margin-left: 0;
+      margin-top: 130px;
+      /* Shift content down */
+    }
+
+
+    p {
+      font-size: 20px;
+      color: rgb(255, 255, 255);
+    }
+
+    h1 {
+      font-family: 'Cormorant Infant', serif;
+    }
+
+    /*Booking Strip Styling */
+    .booking-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+      backdrop-filter: blur(4px);
+    }
+
+    .booking-strip input,
+    .booking-strip select,
+    .booking-strip button {
+      flex: 1;
+      min-width: 150px;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      font-size: 14px;
+    }
+
+    .booking-strip button {
+      background-color: #E74832;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .booking-strip button:hover {
+      background-color: #ba3928;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Vehicle Fleet</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">News</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Shop</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container hero-content">
+      <h1 class="display-5"><b><b><b>Passenger Transport</b></b></b></h1>
+      <br><br>
+      <p><b>
+          Experience the pinnacle of luxury and comfort as you travel with us.
+          Immerse yourself in a serene, air-conditioned ambiance, where every journey feels like a retreat.
+          Lose yourself in a vast selection of movies, ensuring entertainment at your fingertips throughout your ride.
+        </b></p>
+      <br><br>
+
+      <!--Booking Strip Replaces Buttons -->
+      <div class="booking-strip">
+        <input type="text" placeholder="Delhi, India">
+        <input type="text" placeholder="Cairo, Egypt">
+        <input type="date" value="2025-04-01" />
+        <input type="date" value="2025-04-10" />
+        <select>
+          <option>1 Guest - Luxury Coach</option>
+          <option>2 Guests - AC Bus</option>
+          <option>Group - Mini Bus</option>
+        </select>
+        <select>
+          <option>Economy Class</option>
+          <option>Business Class</option>
+        </select>
+        <button>Search</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

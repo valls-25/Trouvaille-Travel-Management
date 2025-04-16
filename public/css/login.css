@@ -1,0 +1,123 @@
+/* .container {
+  display: flex;
+  flex-direction: column;
+}
+
+#logoArea {
+  background-color: black;
+} */
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Cormorant Infant', serif;
+  font-weight: 500;
+}
+
+
+
+.left-panel,
+.right-panel {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left-panel {
+  background-color: white;
+}
+
+.right-panel {
+  background-color: black;
+  color: white;
+  flex-direction: column;
+  text-align: center;
+}
+
+#container {
+  padding: 10px 20px 10px 20px;
+  margin: 5px;
+}
+
+#logo {
+  height: 20rem;
+  width: auto;
+}
+
+.title {
+  font-size: 3em;
+  margin-top: 1em;
+}
+
+.subtitle {
+  font-size: 1.5em;
+  margin-top: 0.5em;
+}
+
+h1 {
+  text-align: left;
+  font-size: 3rem;
+  margin-bottom: 3px;
+}
+
+h4 {
+  margin-top: 5px;
+  color: rgb(177, 171, 171);
+}
+
+#remBtn {
+  width: 0.5rem;
+}
+
+#signIn {
+  width: 22rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: black;
+  color: white;
+  font-size: 1rem;
+}
+
+.inputField {
+  width: 22rem;
+  height: 1.5rem;
+  border-radius: 0.2rem;
+  border-width: 1px;
+}
+
+.flexB {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+input[type="checkbox"] {
+  transform: scale(2);
+  /* Adjust the scale factor as needed */
+}
+
+#forgotPw {
+  color: black;
+  text-decoration: none;
+}
+
+
+#signUp {
+  font-weight: 600;
+  color: black;
+}
+
+p {
+  text-align: center;
+}
+
+#emailError,
+#pwError {
+  color: rgb(215, 104, 104);
+  font-size: 0.8rem;
+}

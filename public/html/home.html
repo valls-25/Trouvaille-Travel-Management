@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trouvaille - Travel</title>
+  <!-- Google Fonts for Cormorant Infant -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css">
+
+  <link rel="stylesheet" href="/css/testimonial.css">
+  <link rel="stylesheet" href="/css/footer2.css">
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const searchForm = document.getElementById("searchForm");
+      const pageSelector = document.getElementById("pageSelect");
+
+      if (searchForm && pageSelector) {
+        searchForm.addEventListener("submit", function (e) {
+          e.preventDefault(); // prevent actual form submission
+
+          const selectedPage = pageSelector.value;
+          if (selectedPage) {
+            window.location.href = selectedPage; // redirect based on selected travel type
+          } else {
+            alert("Please select a travel type.");
+          }
+        });
+      }
+    });
+  </script>
+
+
+
+</head>
+
+
+<body>
+  <div class="outerDiv1">
+
+    <header>
+      <div class="logo">
+        <a href="/html/home.html">
+          <img src="/assests/final-logow.svg" alt="Trouvaille Logo">
+        </a>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="/html/feedback.html">Feedback</a></li>
+          <li><a href="/html/dest.html">Destinations</a></li>
+          <li><a href="/html/hotels.html">Hotels</a></li>
+          <li><a href="/html/different.html">Why Choose Us</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="/html/profile.html"><button class="profile"></button></a></li>
+          <!-- <li><a href="/html/signup.html"><button class="register-btn">Register</button></a></li> -->
+          <li><a href="/html/login.html"><button class="login-btn">Log Out</button></a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <form id="searchForm">
+      <section class="hero">
+        <h1>TROUVAILLE</h1>
+        <div class="searchContainer">
+          <div class="search-box">
+            <div class="input-group">
+              <div class="flexB">
+                <img src="/assests/location icon.svg" alt="">
+                <label for="dest">Where To?</label>
+              </div>
+
+
+              <select id="dest" name="dest">
+                <option value="">Select a destination</option>
+                <option value="DEL">DEL</option>
+                <option value="JFK">JFK</option>
+                <option value="BOM">BOM</option>
+                <option value="CDG">CDG</option>
+                <option value="SYD">SYD</option>
+                <option value="CAI">CAI</option>
+                <option value="LAX">LAX</option>
+                <option value="FRA">FRA</option>
+                <option value="ROM">ROM</option>
+                <option value="MEL">MEL</option>
+              </select>
+
+            </div>
+
+            <div class="input-group">
+              <div class="flexB">
+                <img src="/assests/flight icon.svg" alt="">
+                <label for="travel">Travel Type</label>
+              </div>
+
+              <select id="pageSelect">
+                <option value="">-- Select a page --</option>
+                <option value="/html/flights.html"> Flights </option>
+                <option value="/html/train.html">Trains</option>
+                <option value="/html/cruises.html">Cruises</option>
+                <option value="/html/bus2.html">Bus</option>
+              </select>
+
+
+
+            </div>
+            <div class="input-group">
+              <div class="flexB">
+                <img src="/assests/calendar icon.svg" alt="">
+                <label for="date">When</label>
+              </div>
+
+              <input type="date" name="date">
+            </div>
+            <div class="input-group">
+              <div class="flexB">
+                <img src="/assests/person icon.svg" alt="">
+                <label for="Passengers">Passengers</label>
+              </div>
+              <input type="number" min="1" value="1" name="Passengers">
+
+            </div>
+            <div>
+              <button class="search-btn" type="submit">
+                <img src="/assests/search icon.svg" alt="" id="searchIcon">
+              </button>
+
+            </div>
+      </section>
+    </form>
+  </div>
+
+
+  <div class="outerDiv3" id="testimonials">
+    <h1>Testimonials</h1>
+    <!-- partial:index.partial.html -->
+    <div class="outerdiv">
+
+      <div class="innerdiv">
+        <!-- div1 -->
+        <div class="div1 eachdiv">
+          <div class="userdetails">
+            <div class="imgbox">
+              <img
+                src="https://raw.githubusercontent.com/RahulSahOfficial/testimonials_grid_section/5532c958b7d3c9b910a216b198fdd21c73112d84/images/image-daniel.jpg"
+                alt="">
+            </div>
+            <div class="detbox">
+              <p class="name dark">Daniel Clifford</p>
+              <p class="designation dark">Verified Graduate</p>
+            </div>
+          </div>
+          <div class="review dark">
+            <h4>They crafted the perfect, personalized adventure, making every moment of our trip unforgettable!</h4>
+            <p>“ Trouvaille did an excellent job tailoring every aspect of our trip to suit our needs and preferences.
+              From customized itineraries to hand-picked activities, every detail was thoughtfully curated, ensuring a
+              truly personalized experience.”</p>
+          </div>
+        </div>
+        <!-- div2 -->
+        <div class="div2 eachdiv">
+          <div class="userdetails">
+            <div class="imgbox">
+              <img
+                src="https://raw.githubusercontent.com/RahulSahOfficial/testimonials_grid_section/5532c958b7d3c9b910a216b198fdd21c73112d84/images/image-jonathan.jpg"
+                alt="">
+            </div>
+            <div class="detbox">
+              <p class="name">Jonathan Walters</p>
+              <p class="designation">Verified Graduate</p>
+            </div>
+          </div>
+          <div class="review">
+            <h4>A highly efficient, streamlined process.</h4>
+            <p>“ Booking through Trouvaille was quick and easy, with all the details taken care of. A great choice for
+              any
+              traveler.”</p>
+          </div>
+        </div>
+        <!-- div3 -->
+        <div class="div3 eachdiv">
+          <div class="userdetails">
+            <div class="imgbox">
+              <img
+                src="https://raw.githubusercontent.com/RahulSahOfficial/testimonials_grid_section/5532c958b7d3c9b910a216b198fdd21c73112d84/images/image-kira.jpg"
+                alt="">
+            </div>
+            <div class="detbox">
+              <p class="name dark">Kira Whittle</p>
+              <p class="designation dark">Verified Graduate</p>
+            </div>
+          </div>
+          <div class="review dark">
+            <h4>The best trip I’ve ever taken, Trouvaille, set the gold standard!</h4>
+            <p>“ I’ve traveled a lot, but this was my favorite trip. TROUVAILLE turned a simple getaway into an
+              extraordinary experience. They curated a perfect itinerary, balancing adventure with relaxation. I lounged
+              on pristine beaches, snorkeled in crystal-clear waters, and dined at exquisite restaurants—all without
+              planning anything!Their attention to detail and dedication made every moment special. I can’t wait to
+              book my next trip!”</p>
+          </div>
+        </div>
+        <!-- div4 -->
+        <div class="div4 eachdiv">
+          <div class="userdetails">
+            <div class="imgbox">
+              <img
+                src="https://raw.githubusercontent.com/RahulSahOfficial/testimonials_grid_section/5532c958b7d3c9b910a216b198fdd21c73112d84/images/image-jeanette.jpg"
+                alt="">
+            </div>
+            <div class="detbox">
+              <p class="name dark">Jeanette Harmon</p>
+              <p class="designation dark">Verified Graduate</p>
+            </div>
+          </div>
+          <div class="review dark">
+            <h4>An overall wonderful and unforgettable experience</h4>
+            <p>“ Trouvaille made my trip seamless and unforgettable. The service was exceptional from start to finish! ”
+            </p>
+          </div>
+        </div>
+        <!-- div5 -->
+        <div class="div5 eachdiv">
+          <div class="userdetails">
+            <div class="imgbox">
+              <img
+                src="https://raw.githubusercontent.com/RahulSahOfficial/testimonials_grid_section/5532c958b7d3c9b910a216b198fdd21c73112d84/images/image-patrick.jpg"
+                alt="">
+            </div>
+            <div class="detbox">
+              <p class="name">Patrick Abrams</p>
+              <p class="designation">Verified Graduate</p>
+            </div>
+          </div>
+          <div class="review">
+            <h4>It was the perfect blend of adventure and culture..</h4>
+            <p>“ Trouvaille offered the perfect blend of adventure and culture, from jungle hikes to cooking classes.
+              Every detail was thoughtfully planned, making it a transformative journey. Can't wait to book again! ”</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <footer>
+    <div class="container">
+      <div class="logo-section">
+        <div class="logo">
+          <img src="/assests/final-logow.svg" alt="Trouvaille Logo">
+        </div>
+        <p class="vision">We aspire to weave moments into forever memories through unforgettable adventures</p>
+        <div class="social-icons">
+          <a href="#" aria-label="Facebook"><img src="/assests/Facebook2.svg" alt="Facebook"></a>
+          <a href="#" aria-label="Twitter"><img src="/assests/Twitter2.svg" alt="Twitter"></a>
+          <a href="#" aria-label="Instagram"><img src="/assests/Instagram2.svg" alt="Instagram"></a>
+        </div>
+      </div>
+      <div class="about-section">
+        <h3>About</h3>
+        <ul>
+          <li><a href="#">How it works</a></li>
+          <li><a href="#">Featured</a></li>
+          <li><a href="#">Partnership</a></li>
+          <li><a href="#">Business Relation</a></li>
+        </ul>
+      </div>
+      <div class="community-section">
+        <h3>Community</h3>
+        <ul>
+          <li><a href="#">Events</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Podcast</a></li>
+          <li><a href="#">Invite a friend</a></li>
+        </ul>
+      </div>
+      <div class="socials-section">
+        <h3>Socials</h3>
+        <ul>
+          <li><a href="#" class="footera">Discord</a></li>
+          <li><a href="#" class="footera">Instagram</a></li>
+          <li><a href="#" class="footera">Twitter</a></li>
+          <li><a href="#" class="footera">Facebook</a></li>
+        </ul>
+      </div>
+      <div class="bottom-bar">
+        <div class="copyright">©2025 TROUVAILLE. All rights reserved</div>
+        <div class="legal">
+          <a href="#" class="footera">Privacy & Policy</a>
+          <a href="#" class="footera">Terms & Condition</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+</body>
+
+</html>

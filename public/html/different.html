@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Makes Us Different</title>
+    <style>
+        body {
+            background-color: #0D0D0D;
+            color: #BABDE3;
+            font-family: "Merriweather", serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+        h2 {
+            font-size: 42px;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-align: center;
+            color: white;
+            position: relative;
+            margin-top: 50px;
+            font-family: 'Cormorant-Infant', sans-serif;
+        }
+
+        h2::after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, #8A525B, #BABDE3);
+            margin: 10px auto;
+        }
+
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 90%;
+            max-width: 1200px;
+            margin-top: 50px;
+        }
+
+
+        .item {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0px 10px 30px rgba(255, 255, 255, 0.08);
+            margin: 30px 0;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .item:hover {
+            transform: scale(1.02);
+        }
+
+
+        .circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 16px;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 3px solid #90AEAE;
+            box-shadow: 0 0 12px rgba(144, 174, 174, 0.5);
+        }
+
+        .circle img {
+            width: 90%;
+            margin: 5px 5px 5px 8px;
+            object-fit: cover;
+        }
+
+
+        .quote {
+            background-color: transparent;
+            padding: 20px 30px;
+            margin-left: 20px;
+            flex-grow: 1;
+            font-size: 20px;
+            font-weight: 400;
+            font-style: italic;
+            color: #BABDE3;
+            line-height: 1.6;
+            position: relative;
+            font-family: "Lora", serif;
+        }
+
+        .quote::before,
+        .quote::after {
+            font-size: 40px;
+            font-family: "Playfair Display", serif;
+            color: #8A525B;
+        }
+
+        .quote::before {
+            content: "❝";
+            position: absolute;
+            top: -20px;
+            left: -10px;
+        }
+
+        quote::after {
+            content: "❞";
+            position: absolute;
+            bottom: -20px;
+            right: -10px;
+        }
+
+
+        .reverse {
+            flex-direction: row-reverse;
+        }
+
+        .reverse .quote {
+            margin-left: 0;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>What makes us different</h2>
+
+    <div class="container">
+        <div class="item">
+            <div class="circle">
+                <img src="/assests/star.svg" alt="Person">
+            </div>
+            <div class="quote"><b>"Exclusive Deals & Discounts"</b> <br>
+                Our partnerships with top hotels, airlines, and tour operators give you access to exclusive deals and
+                discounts that you won’t find elsewhere.</div>
+        </div>
+
+        <div class="item reverse">
+            <div class="circle">
+                <img src="/assests/star.svg" alt="Person">
+            </div>
+            <div class="quote"><b>Seamless Booking Experience</b><br>
+                Our platform offers a smooth and easy booking process with everything in one place—flights,
+                accommodations, car rentals, and activities—allowing you to plan your trip effortlessly.
+
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="circle">
+                <img src="/assests/star.svg" alt="Person">
+            </div>
+            <div class="quote"><b>Loyalty Rewards Program</b><br>
+                Earn points with every booking and unlock special perks, discounts, and upgrades with our exclusive
+                loyalty program.</div>
+        </div>
+
+        <div class="item reverse">
+            <div class="circle">
+                <img src="/assests/star.svg" alt="Person">
+            </div>
+            <div class="quote"><b>Giving Back with Every Booking</b><br>
+                We believe in making travel meaningful beyond just the journey. With every booking, a portion of the
+                proceeds goes toward supporting global charities focused on education, healthcare, and environmental
+                sustainability. Travel with us and help make the world a better place!</div>
+        </div>
+    </div>
+
+</body>
+
+</html>

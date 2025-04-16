@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Passenger Transport</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/footer2.css">
+  <style>
+    body {
+      font-family: 'Cormorant Infant', serif;
+      background-image: url('/assests/busss.png');
+      background-size: 180%;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+    }
+
+    .navbar {
+      position: absolute;
+      width: 100%;
+      background: transparent !important;
+    }
+
+    .navbar-nav .nav-item {
+      margin: 0 30px;
+    }
+
+    .navbar-nav .nav-link {
+      color: white !important;
+      font-weight: light;
+      font-size: 18px;
+    }
+
+    .hero {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+      padding-left: 50px;
+    }
+
+    .hero-content {
+      max-width: 700px;
+      text-align: left;
+      margin-left: 0;
+      margin-top: 130px;
+    }
+
+    .booking-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+      backdrop-filter: blur(4px);
+    }
+
+    .booking-strip input,
+    .booking-strip select,
+    .booking-strip button {
+      flex: 1;
+      min-width: 150px;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      font-size: 14px;
+    }
+
+    .booking-strip button {
+      background-color: #E74832;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .booking-strip button:hover {
+      background-color: #ba3928;
+    }
+
+    #offersContainer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 40px;
+      justify-content: center;
+    }
+
+    .offer-card {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 15px;
+      padding: 20px;
+      width: 300px;
+      color: white;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(8px);
+      transition: transform 0.3s;
+    }
+
+    .offer-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .offer-card h3 {
+      font-weight: bold;
+    }
+
+    .offer-card p {
+      font-size: 16px;
+    }
+
+    .offer-card .price {
+      color: #FFD700;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/html/home.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Vehicle Fleet</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">News</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Shop</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container hero-content">
+      <h1 class="display-5"><b>Passenger Transport</b></h1>
+      <br><br>
+      <p>
+        Experience the pinnacle of luxury and comfort as you travel with us.
+        Immerse yourself in a serene, air-conditioned ambiance, where every journey feels like a retreat.
+        Lose yourself in a vast selection of movies, ensuring entertainment at your fingertips throughout your ride.
+      </p>
+      <br><br>
+      <div class="booking-strip">
+        <input type="text" id="fromInput" placeholder="From (e.g., Paris)" />
+        <input type="text" id="toInput" placeholder="To (e.g., Nice)" />
+        <input type="date" />
+        <input type="date" />
+        <select>
+          <option>1 Guest - Luxury Coach</option>
+          <option>2 Guests - AC Bus</option>
+          <option>Group - Mini Bus</option>
+        </select>
+        <select>
+          <option>Economy Class</option>
+          <option>Business Class</option>
+        </select>
+        <button onclick="searchOffers()">Search</button>
+      </div>
+    </div>
+  </section>
+
+  <div id="offersContainer"></div>
+  <div>
+
+  </div>
+  <script>
+    const allOffers = {
+      "paris-nice": [
+        { title: "Luxury Coach", desc: "Direct coach with free meals & movies", price: "€45", discount: "10% off for 2+ tickets" },
+        { title: "Budget Ride", desc: "Cheapest option with scenic views", price: "€30", discount: "Early bird offer: Save €5" }
+      ],
+      "delhi-jaipur": [
+        { title: "Royal Rajasthan Tour", desc: "Fully AC sleeper with snacks", price: "₹499", discount: "20% discount on return trip" },
+        { title: "Quick Commute", desc: "Fastest 5hr ride with comfort seating", price: "₹599", discount: "Free cancellation" }
+      ],
+      "cairo-alexandria": [
+        { title: "Desert Drive", desc: "Guided trip with stopovers", price: "E£120", discount: "Group of 3+ get 1 free" },
+        { title: "Express Bus", desc: "AC ride in just 2 hrs", price: "E£150", discount: "Weekend special: 15% off" }
+      ],
+      "new york-washington": [
+        { title: "Fast Connect", desc: "NYC to DC in 4hrs, free WiFi", price: "$30", discount: "Student special: 25% off" },
+        { title: "Premium Line", desc: "Deluxe seats and charging ports", price: "$40", discount: "Buy 1 Get 1 50% off" }
+      ],
+      "sydney-melbourne": [
+        { title: "Coastal Cruiser", desc: "Ride with scenic ocean stops", price: "A$60", discount: "Save A$10 on weekend" },
+        { title: "Business Express", desc: "Executive ride with meals included", price: "A$75", discount: "First class at economy price!" }
+      ]
+    };
+
+    function searchOffers() {
+      const from = document.getElementById("fromInput").value.toLowerCase();
+      const to = document.getElementById("toInput").value.toLowerCase();
+      const routeKey = `${from}-${to}`.replace(/\s+/g, '');
+      const offers = allOffers[routeKey];
+
+      const container = document.getElementById("offersContainer");
+      container.innerHTML = "";
+
+      if (offers) {
+        offers.forEach(offer => {
+          container.innerHTML += `
+          <div class="offer-card">
+            <h3>${offer.title}</h3>
+            <p>${offer.desc}</p>
+            <p class="price">${offer.price}</p>
+            <p><em>${offer.discount}</em></p>
+          </div>
+        `;
+        });
+      } else {
+        container.innerHTML = '<p style="color:white; font-size:18px">💔 No matching offers found for your route.</p>';
+      }
+    }
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TROUVAILLE Login Page</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,300..700;1,300..700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/css/login.css">
+  <script src="/js/signup.js" defer></script>
+
+</head>
+
+<body>
+  <section class="left-panel">
+    <form id="userForm" method="POST" action="/api/login">
+      <div id="container">
+        <h1>Welcome Back</h1>
+        <h4>Welcome Back! Please Enter Your Details</h4>
+        <div>
+          <label for="email">Email</label><br>
+          <input type="email" name="email" id="email" class="inputField" onblur="validEmail()" onkeyup="validEmail()"
+            id=""><br>
+          <span id="emailError"></span><br>
+          <label for="pw">Password</label><br>
+          <input type="password" name="pw" id="pw" class="inputField" onblur="validPassword()"
+            onkeyup="validPassword()"><br>
+          <span id="pwError"></span><br>
+          <div class="flexB">
+            <span>
+              <input type="checkbox" name="remBtn" id="remBtn">
+              <label for="remBtn">Remember Me</label>
+            </span>
+            <a href="/html/forgot.html" target="_blank"><span id="forgotPw">Forgot Password?</span></a>
+          </div>
+          <br><br>
+          <button id="signIn">Sign In</button>
+          <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+        </div>
+      </div>
+
+    </form>
+
+  </section>
+  <section class="right-panel">
+    <div class="logo">
+      <img src="/assests/final-logow.svg" alt="trouvaille logo" id="logo">
+    </div>
+    <div class="title">TROUVAILLE</div>
+    <div class="subtitle">Forever in memory.</div>
+
+  </section>
+  <script>
+    function validEmail() {
+      let email = document.getElementById('email').value;
+      const valEmail = /^[a-zA-Z0-9._]+@[a-zA-Z0-9.]+\.[a-zA-Z]{2,}$/;
+      let emailError = document.querySelector('#emailError');
+      if (email.trim() === '') {
+        emailError.textContent = 'Email ID is required.';
+        emailError.style.display = 'inline';
+        return false;
+      }
+      else if (!valEmail.test(email)) {
+        emailError.innerText = "Invalid Email ID"
+        emailError.style.display = "inline";
+        return false;
+      }
+      else {
+        emailError.style.display = 'none';
+        return true;
+      }
+    }
+
+    function validPassword() {
+      let pw = document.getElementById('pw').value;
+      const validPw = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@.#$!%*?&]).{8,}$/;
+      let pwError = document.getElementById('pwError');
+
+      if (pw.trim() === "") {
+        pwError.textContent = "Password is required.";
+        pwError.style.display = "inline";
+        return false;
+      }
+      else if (!validPw.test(pw)) {
+        pwError.innerText = "Password must be at least 8 characters long.\nIt must include a letter, a number, and a special character.";
+        pwError.style.display = "inline";
+        return false;
+      }
+      else {
+        pwError.style.display = "none";
+        return true;
+      }
+    }
+
+    // Handling form submission
+    document.getElementById('userForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      if (!validEmail() || !validPassword()) {
+        alert("Please fix the errors in the form.");
+        return;
+      }
+
+      const credentials = {
+        email: document.getElementById('email').value,
+        pw: document.getElementById('pw').value
+      };
+
+      fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(credentials)
+      })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data); // For debugging
+          if (data.success) {
+            window.location.href = data.redirect;
+          } else {
+            alert(data.message);
+          }
+        })
+        .catch(err => {
+          console.error('Login error:', err);
+          alert('Login failed.');
+        });
+    });
+
+
+
+  </script>
+</body>
+
+</html>

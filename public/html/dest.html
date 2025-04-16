@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Travel Destinations</title>
+  <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" /> -->
+  <link rel="stylesheet" href="/css/swiper-bundle.min.css">
+  <link rel="stylesheet" href="/css/dest.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+  <!-- Page transition overlay -->
+  <div class="page-transition">
+    <div class="transition-content">
+      <img src="/assests/final logow.png" alt="Travel Destinations Logo" class="transition-logo" />
+    </div>
+  </div>
+
+  <div class="container">
+    <header>
+      <h1></h1>
+      <p></p>
+    </header>
+
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <!-- Cards will be dynamically added here -->
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/swiper-bundle.min.js"></script>
+  <script src="/js/gsap.min.js"></script>
+
+  <!-- Transition handling for country pages -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const pageTransition = document.querySelector(".page-transition");
+      const transitionContent = document.querySelector(".transition-content");
+
+      // Check if we're arriving from a country page with transition
+      const isPageLoad = sessionStorage.getItem("pageIsLoading");
+      if (isPageLoad === "true") {
+        // IMPORTANT: Force the transition to be visible immediately when page loads
+        // This helps especially with Chrome which may clear styles during page transitions
+        document.body.classList.add("loading");
+        pageTransition.style.transition = "none";
+        pageTransition.style.transform = "translateY(0)";
+
+        // Force browser to recognize the above style changes before animating
+        // Use requestAnimationFrame for better browser compatibility
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            // Restore the transition effect and animate upward
+            pageTransition.style.transition =
+              "transform 0.7s cubic-bezier(0.7, 0, 0.3, 1)";
+            pageTransition.style.transform = "translateY(-100%)";
+            // No need to change opacity since content is empty
+            sessionStorage.removeItem("pageIsLoading");
+
+            // Remove loading class after transition completes
+            setTimeout(() => {
+              document.body.classList.remove("loading");
+            }, 1200);
+          });
+        });
+      }
+    });
+  </script>
+
+  <script src="/js/dest.js"></script>
+</body>
+
+</html>

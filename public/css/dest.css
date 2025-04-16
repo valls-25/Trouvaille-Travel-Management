@@ -1,0 +1,178 @@
+@import url("/css/cormorantInfant.css");
+
+/* Basic Reset */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Cormorant Infant", serif;
+}
+
+body {
+  background-size: contain;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Prevent scrolling during page transitions */
+body.loading {
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+.container {
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+}
+
+header {
+  padding: 20px;
+  color: white;
+  position: relative;
+  z-index: 2;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-bottom: 50px;
+  /* Adjust based on testing */
+}
+
+header h1 {
+  font-size: 4em;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+header p {
+  font-size: 1.2em;
+}
+
+/* Explore Now button styling */
+header p a {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+header p a:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Swiper Styles */
+
+.swiper-container {
+  width: 700px;
+  /* Adjusted to exactly show 3 cards */
+  height: 300px;
+  /* 250px card height + 10px extra for active slide. change for cutoff  */
+  position: fixed;
+  padding-top: 25px;
+  bottom: 0px;
+  right: 20px;
+  z-index: 1;
+  overflow: hidden;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.swiper-wrapper {
+  display: flex;
+  transition: transform 0.3s ease;
+  align-items: center;
+}
+
+.swiper-slide {
+  flex-shrink: 0;
+  width: 250px;
+  /* Size to fit three */
+  height: 250px;
+  border-radius: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  background-position: center;
+  background-size: cover;
+  margin-right: 20px;
+  opacity: 0.4;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.swiper-slide.swiper-slide-prev,
+.swiper-slide.swiper-slide-active,
+.swiper-slide.swiper-slide-next {
+  opacity: 1;
+  /* Prev, Active, Next Cards */
+}
+
+.swiper-slide.swiper-slide-active {
+  transform: translateY(-25px);
+}
+
+.swiper-slide:last-child {
+  margin-right: 0;
+}
+
+/* Responsive adjustments (example) */
+
+@media (max-width: 768px) {
+  .swiper-container {
+    width: 300px;
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .swiper-slide {
+    width: 90px;
+    height: 120px;
+  }
+
+  header h1 {
+    font-size: 3em;
+  }
+
+  header p {
+    font-size: 1em;
+  }
+}
+
+/* Page Transition Effect */
+.page-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  z-index: 9999;
+  transform: translateY(-100%);
+  transition: transform 1.2s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.transition-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Logo in transition screen */
+.transition-logo {
+  max-width: 200px;
+  height: auto;
+  display: block;
+}
+
+/* Add transition-link class for any links that should trigger the page transition */
+.transition-link {
+  cursor: pointer;
+}

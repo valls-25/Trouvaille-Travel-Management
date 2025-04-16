@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public Transport - Luxury Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/tw.16">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        #trainLocationInput {
+            padding: 10px;
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        #trainCardContainer {
+            display: none;
+            /* Hide by default */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 10px;
+            padding: 10px;
+            justify-content: center;
+            margin: 10px;
+        }
+
+        .train-card {
+            background-color: white;
+            border: 2px solid #003366;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: auto;
+            margin: 8px;
+            width: 300px;
+        }
+
+        .train-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border-color: #ffcc00;
+        }
+
+        .train-card h3 {
+            font-size: 22px;
+            margin-bottom: 8px;
+            color: #003366;
+        }
+
+        .train-card p {
+            color: #555;
+            font-size: 16px;
+            margin: 4px 0;
+        }
+
+        .train-card .price {
+            font-weight: bold;
+            color: #000;
+            margin-top: 10px;
+            font-size: 18px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cormorant Infant', serif;
+        }
+
+        body {
+            background: #f7f7f7;
+            color: #333;
+            font-size: 16px;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            /* Centers the nav items (links and search bar) */
+            align-items: center;
+            background: #003366;
+            padding: 20px 80px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 10;
+            top: 0;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            /* Adjusts spacing between links */
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ffcc00;
+        }
+
+        .search-bar {
+            padding: 12px;
+            border: 2px solid #ffcc00;
+            border-radius: 20px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .hero {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* padding: 120px 80px; */
+            background: #003366;
+            /* position: relative; */
+            border-radius: 20px;
+            margin: 100px;
+            background-attachment: fixed;
+            box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-content {
+            max-width: 45%;
+            color: white;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-family: 'Cormorant Infant', serif;
+            font-size: 40px;
+            color: #ffcc00;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-top: 30px;
+            ;
+        }
+
+        .btn {
+            background: #ffcc00;
+            padding: 15px 30px;
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 25px 0;
+            border-radius: 30px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #e6b800;
+            transform: scale(1.05);
+        }
+
+        .book-btn {
+            background: #003366;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .book-btn:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .booking-strip {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .booking-strip input,
+        .booking-strip select {
+            padding: 12px 15px;
+            font-size: 14px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            width: 220px;
+            outline: none;
+            background: #fff;
+        }
+
+        .booking-strip button {
+            padding: 12px 25px;
+            background-color: #ffcc00;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .booking-strip button:hover {
+            background-color: #e6b800;
+            transform: scale(1.03);
+        }
+
+        .hero-image {
+            margin: 20px;
+
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 20px;
+            object-fit: cover;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-around;
+            padding: 50px 80px;
+            text-align: center;
+            background: #f7f7f7;
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .feature-box {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 30%;
+            transition: 0.3s;
+            text-align: center;
+        }
+
+        .feature-box h3 {
+            color: #003366;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .feature-box p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-box::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 5px;
+            background: #ffcc00;
+            top: -10px;
+            left: 0;
+            border-radius: 5px;
+        }
+
+        footer {
+            background: #003366;
+            color: white;
+            padding: 30px 80px;
+            text-align: center;
+            font-size: 14px;
+            margin-top: 60px;
+        }
+
+        footer a {
+            color: #ffcc00;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: 600;
+        }
+
+        .footer-links {
+            margin-top: 20px;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffcc00;
+            letter-spacing: 2px;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .container h2 {
+            text-align: center;
+            color: #003366;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .container p {
+            text-align: center;
+            color: #777;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <!-- Logo has been removed -->
+            <ul class="nav-links">
+                <li><a href="/html/home.html">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Ticket Info</a></li>
+                <li><a href="#">Live Tracking</a></li>
+            </ul>
+            <input type="text" placeholder="Search Here..." class="search-bar">
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-image">
+            <img src="TRAIN.png" alt="Train Travel">
+        </div>
+        <div class="hero-content">
+
+            <h1><b>EXPLORE YOUR TRIP WITH TRAIN TRANSPORT</b></h1>
+            <button class="btn">Let's Begin your Journey</button><br><br>
+
+
+            <div class="booking-strip">
+                <input id="trainLocationInput" type="text" placeholder="Search by source or destination"
+                    class="border p-2 rounded mb-4 w-full">
+                <input type="date" id="departDate" />
+                <input type="date" id="returnDate" />
+                <select id="passengersClass">
+                    <option disabled selected>Passengers & Class</option>
+                    <option>1 Guest - Sleeper Class</option>
+                    <option>2 Guests - AC Tier 2</option>
+                    <option>Group - Executive Chair Car</option>
+                </select>
+                <select id="fareType">
+                    <option disabled selected>Fare Type</option>
+                    <option>Economy</option>
+                    <option>Business</option>
+                    <option>First Class</option>
+                </select>
+                <button id="searchButton">Search</button>
+            </div>
+
+        </div>
+
+
+    </section>
+    <div id="trainCardContainer" class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"></div>
+
+
+    <section class="features">
+        <div class="feature-box">
+            <h3>Luxury Seating</h3>
+            <p><b>Travel in utmost comfort with our premium seating options.</b></p>
+        </div>
+        <div class="feature-box">
+            <h3>Real-Time Tracking</h3>
+            <p><b>Track your train live and plan your journey efficiently.</b></p>
+        </div>
+        <div class="feature-box">
+            <h3>24/7 Support</h3>
+            <p><b>Dedicated support team available anytime to assist you.</b></p>
+        </div>
+    </section>
+
+    <section class="container">
+        <h2>Why Choose Us?</h2>
+        <p><b>We provide a first-class experience with luxury seating, fine dining, and the best service. Our trains are
+                designed to provide the most comfortable journey possible. Your safety and comfort are our top
+                priorities.</p>
+    </section>
+
+    <footer>
+        <div class="footer-logo">PUBLIC TRANSPORT</div>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a> |
+            <a href="#">Terms & Conditions</a> |
+            <a href="#">Contact Us</a>
+        </div>
+        <!-- Train Search Results (Enhanced Version) -->
+        <div id="train-results" style="display: none; margin: 40px auto; max-width: 1200px;">
+            <h2 style="text-align: center; color: #003366; margin-bottom: 30px;">Available Trains</h2>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+
+                <section class="container">
+                    <h2>Available Luxury Train Options</h2>
+
+                    <!-- Train Card 1 -->
+                    <!-- Original entries -->
+                    <div class="feature-box train-card" data-from="Paris Gare du Nord" data-to="Amsterdam Central">
+                        <h3>🚆 Grand Continental Express</h3>
+                        <p>Route: Paris Gare du Nord → Amsterdam Central</p>
+                        <p>Departure: 08:00 AM</p>
+                        <p>Arrival: 12:30 PM</p>
+                        <p>Duration: 4h 30m</p>
+                    </div>
+
+                    <div class="feature-box train-card" data-from="Tokyo Station" data-to="Kyoto Shinkansen">
+                        <h3>🚄 Silver Rail Voyager</h3>
+                        <p>Route: Tokyo Station → Kyoto Shinkansen</p>
+                        <p>Departure: 09:15 AM</p>
+                        <p>Arrival: 11:30 AM</p>
+                        <p>Duration: 2h 15m</p>
+                    </div>
+
+                    <div class="feature-box train-card" data-from="Dubai Central" data-to="Riyadh South Terminal">
+                        <h3>🚅 Desert Mirage Express</h3>
+                        <p>Route: Dubai Central → Riyadh South Terminal</p>
+                        <p>Departure: 07:00 AM</p>
+                        <p>Arrival: 01:00 PM</p>
+                        <p>Duration: 6h 00m</p>
+                    </div>
+
+                    <div class="feature-box train-card" data-from="Oslo" data-to="Stockholm">
+                        <h3>🚆 Nordic Twilight Cruiser</h3>
+                        <p>Route: Oslo → Stockholm</p>
+                        <p>Departure: 06:45 AM</p>
+                        <p>Arrival: 10:45 AM</p>
+                        <p>Duration: 4h 00m</p>
+                    </div>
+
+                    <!-- New entries -->
+                    <div class="feature-box train-card" data-from="Mumbai" data-to="Delhi">
+                        <h3>🚄 Western Frontier Express</h3>
+                        <p>Route: Mumbai → Delhi</p>
+                        <p>Departure: 06:00 AM</p>
+                        <p>Arrival: 02:00 PM</p>
+                        <p>Duration: 8h 00m</p>
+                    </div>
+
+                    <div class="feature-box train-card" data-from="Delhi" data-to="Mumbai">
+                        <h3>🚆 Deccan Majesty</h3>
+                        <p>Route: Delhi → Mumbai</p>
+                        <p>Departure: 07:30 AM</p>
+                        <p>Arrival: 03:30 PM</p>
+                        <p>Duration: 8h 00m</p>
+                    </div>
+
+                    <div class="feature-box train-card" data-from="Paris" data-to="Cairo">
+                        <h3>🚅 Continental Nile Express</h3>
+                        <p>Route: Paris → Cairo</p>
+                        <p>Departure: 05:45 AM</p>
+                        <p>Arrival: 05:45 PM</p>
+                        <p>Duration: 12h 00m</p>
+                    </div>
+
+                    <div class="feature-box train-card" data-from="Cairo" data-to="Paris">
+                        <h3>🚄 Pharaoh Line</h3>
+                        <p>Route: Cairo → Paris</p>
+                        <p>Departure: 06:00 AM</p>
+                        <p>Arrival: 06:00 PM</p>
+                        <p>Duration: 12h 00m</p>
+                    </div>
+
+                    <div class="feature-box train-card" data-from="Dubai" data-to="Mumbai">
+                        <h3>🚆 Arabian Coastal Runner</h3>
+                        <p>Route: Dubai → Mumbai</p>
+                        <p>Departure: 08:00 AM</p>
+                        <p>Arrival: 04:00 PM</p>
+                        <p>Duration: 8h 00m</p>
+                    </div>
+
+                </section>
+            </div>
+
+            <script>
+                fetch('/api/trains')
+                    .then(response => response.json())
+                    .then(data => {
+                        const tableBody = document.querySelector('#trainTable tbody');
+
+                        data.forEach(train => {
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+            <td>${train.train_id}</td>
+            <td>${train.name}</td>
+            <td>${train.source}</td>
+            <td>${train.destination}</td>
+            <td>${train.departure_time}</td>
+          `;
+                            tableBody.appendChild(row);
+                        });
+                    })
+                    .catch(err => {
+                        console.error('Error fetching trains:', err);
+                    });
+
+
+
+                const trains = [
+                    { name: "Rajdhani Express", src: "Mumbai", dest: "Delhi", time: "16h", price: "$60", image: "/assets/train/rajdhani.jpg" },
+                    { name: "Shatabdi Express", src: "Delhi", dest: "Mumbai", time: "17h", price: "$55", image: "/assets/train/shatabdi.jpg" },
+                    { name: "Paris Express", src: "Paris", dest: "Cairo", time: "20h", price: "$90", image: "/assets/train/paris-express.jpg" },
+                    { name: "Cairo Runner", src: "Cairo", dest: "Dubai", time: "22h", price: "$95", image: "/assets/train/cairo-runner.jpg" },
+                    { name: "Desert Express", src: "Dubai", dest: "Mumbai", time: "24h", price: "$100", image: "/assets/train/desert-express.jpg" },
+                    { name: "Euro Rail", src: "Paris", dest: "Dubai", time: "23h", price: "$110", image: "/assets/train/euro.jpg" },
+                    { name: "Golden Chariot", src: "Mumbai", dest: "Cairo", time: "30h", price: "$120", image: "/assets/train/golden.jpg" },
+                    { name: "Royal Desert", src: "Delhi", dest: "Dubai", time: "28h", price: "$110", image: "/assets/train/royal.jpg" },
+                    { name: "Luxury Express", src: "Paris", dest: "Delhi", time: "25h", price: "$130", image: "/assets/train/luxury.jpg" },
+                    { name: "Nile Voyager", src: "Cairo", dest: "Paris", time: "21h", price: "$90", image: "/assets/train/nile.jpg" },
+                    { name: "Sky Track", src: "Dubai", dest: "Delhi", time: "26h", price: "$115", image: "/assets/train/skytrack.jpg" }
+                ];
+
+                const trainCardContainer = document.getElementById('trainCardContainer');
+                const trainLocationInput = document.getElementById('trainLocationInput');
+                const searchButton = document.getElementById('searchButton');
+
+                function renderTrains(filteredTrains) {
+                    trainCardContainer.innerHTML = '';
+                    trainCardContainer.style.display = 'grid';  // Show the container when rendering
+
+                    if (filteredTrains.length === 0) {
+                        trainCardContainer.innerHTML = `<p class="text-gray-600 text-center col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4">
+                            No trains found for this route.</p>`;
+                        return;
+                    }
+
+                    filteredTrains.forEach(train => {
+                        const card = document.createElement('div');
+                        card.className = "train-card";
+
+                        card.innerHTML = `
+                            <div class="p-3">
+                                <h3 class="text-lg font-bold" style="color: #003366;">${train.name}</h3>
+                                <p class="text-gray-600">${train.src} → ${train.dest}</p>
+                                <div class="flex justify-between items-center mt-2">
+                                    <p class="text-gray-800 font-bold">${train.price}</p>
+                                    <span class="text-sm text-gray-500">${train.time}</span>
+                                </div>
+                            </div>
+                        `;
+
+                        trainCardContainer.appendChild(card);
+                    });
+                }
+
+                // Only filter and show trains when search button is clicked
+                searchButton.addEventListener('click', () => {
+                    const query = trainLocationInput.value.trim().toLowerCase();
+                    const filtered = trains.filter(train =>
+                        train.src.toLowerCase().includes(query) || train.dest.toLowerCase().includes(query)
+                    );
+                    renderTrains(filtered);
+                });
+
+                // Optional: Clear results when input is cleared
+                trainLocationInput.addEventListener('input', () => {
+                    if (trainLocationInput.value.trim() === '') {
+                        trainCardContainer.style.display = 'none';
+                    }
+                });
+
+            </script>
+
+
+
+            <p>&copy; 2025 Public Transport. All rights reserved.</p>
+    </footer>
+    <script>
+
+
+
+    </script>
+</body>
+
+</html>

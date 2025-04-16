@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TROUVAILLE Login Page</title>
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,300..700;1,300..700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/css/signup.css">
+  <link rel="stylesheet" href="/css/login.css">
+
+  <script src="/js/signup.js" defer></script>
+</head>
+
+<body>
+  <section class="left-panel">
+    <form id="signupForm" method="POST" action="/api/signup">
+      <div id="container">
+        <h1>Welcome</h1>
+        <h4>So Glad To See You! Please Enter Your Details</h4>
+        <div>
+          <!-- Name input field with validation events -->
+          <label for="fname">First Name</label><br>
+          <input type="text" name="fname" id="fname" class="inputField name" onblur="validName()"
+            onkeyup="validName()"><br>
+          <span class="nameError"></span><br> <!-- Error message for first name -->
+
+          <label for="lname">Last Name</label><br>
+          <input type="text" name="lname" id="lname" class="inputField name" onblur="validName()"
+            onkeyup="validName()"><br>
+
+          <span class="nameError"></span><br> <!-- Error message for last name -->
+          <label for="username">Username </label><br>
+          <input type="text" name="username" id="username" class="inputField" onblur="validUser()"
+            onkeyup="validUser()"><br>
+          <span id="userError" class="nameError"></span><br>
+
+          <!-- Phone input field with validation events -->
+          <label for="phone">Phone Number</label><br>
+          <input type="tel" name="phone" id="phone" class="inputField" onblur="validPhone()" onkeyup="validPhone()"><br>
+          <span id="phoneError"></span><br> <!-- Error message for phone validation -->
+
+
+          <!-- Email input field (You can implement validation for email here later) -->
+          <label for="email">Email</label><br>
+          <input type="email" name="email" id="email" class="inputField" onblur="validEmail()"
+            onkeyup="validEmail()"><br>
+          <span id="emailError"></span><br>
+
+
+          <!-- Password input field (You can implement password validation here later) -->
+          <label for="pw">Password</label><br>
+          <input type="password" name="pw" id="pw" class="inputField" onblur="validPassword()"
+            onkeyup="validPassword()"><br>
+          <span id="pwError"></span><br>
+
+          <div class="flexB">
+            <span>
+              <input type="checkbox" name="remBtn" id="remBtn">
+              <label for="remBtn">Remember Me</label>
+            </span>
+
+          </div>
+          <br>
+          <button id="signIn">Sign Up</button>
+          <p>Already have an account? <a href="/html/login.html">Login</a>
+          </p>
+
+        </div>
+      </div>
+
+    </form>
+
+  </section>
+  <section class="right-panel">
+    <div class="logo">
+      <img src="/assests/final-logow.svg" alt="trouvaille logo" id="logo">
+    </div>
+    <div class="title">TROUVAILLE</div>
+    <div class="subtitle">Forever in memory.</div>
+  </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("userForm");
+      if (form) {
+        form.addEventListener("submit", (e) => {
+          // your fetch code here
+        });
+      }
+    });
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("userForm");
+
+      form?.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        // Validate fields before sending
+        if (!validEmail() || !validPassword() || !validConfirmPassword()) {
+          alert("Please fix the errors in the form.");
+          return;
+        }
+
+        // Gather form data
+        const formData = {
+          fname: document.getElementById("fname").value,
+          lname: document.getElementById("lname").value,
+          username: document.getElementById("username").value,
+          phone: document.getElementById("phone").value,
+          email: document.getElementById("email").value,
+          pw: document.getElementById("pw").value
+        };
+
+        // Submit form via fetch
+        fetch("/api/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(formData)
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.success) {
+              // ✅ Redirect on successful signup
+              window.location.href = data.redirect;
+            } else {
+              alert(data.message || "Signup failed. Try again.");
+            }
+          })
+          .catch(err => {
+            console.error("Signup error:", err);
+            alert("An error occurred while signing up.");
+          });
+      });
+    });
+
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trouvaille - Hotels & Reviews</title>
+
+  <!-- External libraries -->
+  <!-- <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@400;700&display=swap" rel="stylesheet"> -->
+
+  <script src="/css/tw.16"></script>
+  <script src="/js/angular.min.js"></script>
+  <script src="/js/swiper-bundle.min.js"></script>
+  <link rel="stylesheet" href="/css/swiper-bundle.min.css">
+
+  <link rel="stylesheet" href="/css/cormorantInfant.css">
+  <link rel="stylesheet" href="/css/hotels.css">
+</head>
+
+<body ng-app="myComments" ng-controller="commentsController">
+  <!-- Header Section -->
+  <header class="bg-black shadow-md">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="text-2xl font-bold text-gray-800 flex items-center">
+        <img src="/assests/final logow.svg" alt="Trouvaille logo" class="h-8 mr-2">
+        <span class="text-white">TROUVAILLE</span>
+      </div>
+      <nav class="hidden md:flex space-x-4">
+        <a class="text-gray-400 hover:text-white transition-colors" href="/html/home.html">Home</a>
+        <a class="text-gray-400 hover:text-white transition-colors" href="#">Support</a>
+        <a class="text-gray-400 hover:text-white transition-colors" href="#">Trips</a>
+
+      </nav>
+      <div class="flex items-center">
+        <a href="/html/login.html">
+          <button class="bg-gray-200 text-gray-800 px-4 py-2 rounded-full hover:bg-gray-300 transition-colors">Log
+            Out</button></a>
+        <button class="md:hidden ml-4 text-white">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- Hero Section -->
+  <section class="relative bg-cover bg-center h-screen" style="background-image: url('/assests/hotel_hero1.jpg');">
+    <div class="absolute inset-0 bg-black opacity-50"></div>
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 text-white w-full px-4">
+      <div class="bg-white bg-opacity-30 backdrop-blur-sm p-6 rounded-lg shadow-xl max-w-3xl mx-auto">
+        <h1 id="hotelH1" class="text-3xl font-bold mb-4 text-center">Explore your place to stay</h1>
+        <div class="flex flex-wrap -mx-2 mb-4">
+          <div class="w-full md:w-1/4 px-2 mb-2 md:mb-0">
+            <input id="locationInput" class="w-full p-4 rounded-lg bg-white text-gray-800" placeholder="Enter Place"
+              type="text" />
+          </div>
+          <div class="w-full md:w-1/4 px-2 mb-2 md:mb-0">
+            <input class="w-full p-4 rounded-lg bg-white text-gray-800" type="date" />
+          </div>
+          <div class="w-full md:w-1/4 px-2 mb-2 md:mb-0">
+            <input class="w-full p-4 rounded-lg bg-white text-gray-800" type="date" />
+          </div>
+          <div class="w-full md:w-1/4 px-2 mb-2 md:mb-0">
+            <input class="w-full p-4 rounded-lg bg-white text-gray-800" placeholder="2 Guests" type="number" min="1" />
+          </div>
+        </div>
+        <div class="flex justify-center">
+          <a href="#hotelsH1">
+            <button class="text-white px-6 py-4 rounded-lg hover:bg-opacity-90 transition-all" id="checkOut">Check
+              Out</button>
+          </a>
+        </div>
+        <p class="text-lg mt-4 text-center">
+          We provide a variety of the best lodging accommodations for those of you who need it. Don't worry
+          about the quality of the service.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div>
+    <h1 id="hotelsH1">Available Hotels</h1>
+    <div id="hotelCardContainer"
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full max-w-6xl mt-6 mx-auto">
+
+      <!-- Hotel cards will be injected here by JavaScript -->
+    </div>
+
+  </div>
+
+
+
+  <!-- Feedback Section - Restructured -->
+  <h1 id="commentH1">Trusted by Thousands of Happy Customers</h1>
+  <div class=" feedback-container">
+    <div class="left-section">
+      <div id="logo">
+        <img src="/assests/final logow.svg" alt="Trouvaille Logo">
+      </div>
+      <div class="review-box" id="addFeedback">
+        <!-- <h3 class="mb-4 font-bold text-lg">Share Your Experience</h3> -->
+        <textarea ng-model="commentText" placeholder="Tell us about your stay..."></textarea>
+        <div class="ratings">
+          <div>
+            <label for="rating">Rating (1-5)</label>
+            <input type="number" id="rating" ng-model="commentRating" min="1" max="5" step="0.5" value="4.5">
+          </div>
+          <button ng-click="isEditing ? updateComment() : addComment()">
+            {{ isEditing ? 'Update' : 'Submit' }}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="right-section">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" ng-repeat="chunk in commentChunks">
+            <div ng-repeat="comment in chunk" class="review-box">
+              <div class="profile">
+                <img ng-src="{{ comment.profileImage || 'default-profile.jpg' }}" alt="Profile Image">
+                <div class="user-info">
+                  <span class="name">{{ comment.userName }}</span>
+                  <span class="location">{{ comment.location }}</span>
+                </div>
+              </div>
+              <p class="review-text" ng-bind="comment.text"></p>
+              <span class="rating">{{ comment.rating }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Section - Improved structure -->
+  <footer>
+    <div class="container">
+      <div class="logo-section">
+        <div class="logo">
+          <img src="/assests/final logow.svg" alt="Trouvaille Logo">
+        </div>
+        <p class="vision">We aspire to weave moments into forever memories through unforgettable adventures</p>
+        <div class="social-icons">
+          <a href="#" aria-label="Facebook"><img src="/assests/Facebook2.svg" alt="Facebook"></a>
+          <a href="#" aria-label="Twitter"><img src="/assests/Twitter2.svg" alt="Twitter"></a>
+          <a href="#" aria-label="Instagram"><img src="/assests/Instagram2.svg" alt="Instagram"></a>
+        </div>
+      </div>
+      <div class="about-section">
+        <h3>About</h3>
+        <ul>
+          <li><a href="#">How it works</a></li>
+          <li><a href="#">Featured</a></li>
+          <li><a href="#">Partnership</a></li>
+          <li><a href="#">Business Relation</a></li>
+        </ul>
+      </div>
+      <div class="community-section">
+        <h3>Community</h3>
+        <ul>
+          <li><a href="#">Events</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Podcast</a></li>
+          <li><a href="#">Invite a friend</a></li>
+        </ul>
+      </div>
+      <div class="socials-section">
+        <h3>Socials</h3>
+        <ul>
+          <li><a href="#">Discord</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Twitter</a></li>
+          <li><a href="#">Facebook</a></li>
+        </ul>
+      </div>
+      <div class="bottom-bar">
+        <div class="copyright">©2025 TROUVAILLE. All rights reserved</div>
+        <div class="legal">
+          <a href="#">Privacy & Policy</a>
+          <a href="#">Terms & Condition</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const hotels = [
+      {
+        name: "Trident Udaipur",
+        location: "Udaipur, India",
+        price: "$140/night",
+        image: "/assests/hotel/trident.jpg",
+        website: "https://www.tridenthotels.com/hotels-in-udaipur"
+      },
+      {
+        name: "Sahara Star",
+        location: "Mumbai, India",
+        price: "$120/night",
+        image: "/assests/hotel/sahara.webp",
+        website: "https://www.saharastar.com/"
+      },
+
+      {
+        name: "Hilton Hyde Park",
+        location: "London, UK",
+        price: "$160/night",
+        image: "/assests/hotel/hilton.jpg",
+        website: "https://www.hilton.com/en/hotels/lonhphn-hilton-london-hyde-park/?WT.mc_id=zINDA0EMEA1MB2PSH3Paid_ggl4ACBI_Brand_Destination5dkt6MULTIBR7EN8i81487387_121127567_71700000119552476&&&&&gad_source=1&gclid=CjwKCAjwzMi_BhACEiwAX4YZUMSj1Z0CuE4O_H-2PjRD99w2it6nIq7B63EkMGAJCI1yUvDYEaRA9hoClpgQAvD_BwE&gclsrc=aw.ds"
+      },
+      {
+        name: "Sax Paris",
+        location: "Paris, France",
+        price: "$190/night",
+        image: "/assests/hotel/sax.jpg",
+        website: "https://www.hilton.com/en/hotels/paretol-sax-paris/"
+      },
+      {
+        name: "Hotel Berchielli",
+        location: "Florence, Italy",
+        price: "$170/night",
+        image: "/assests/hotel/berchielli.jpg",
+        website: "https://www.berchielli.it/en/index"
+      },
+      {
+        name: "W",
+        location: "Sydney, Australia",
+        price: "$200/night",
+        image: "/assests/hotel/w.jpg",
+        website: "https://www.marriott.com/search/findHotels.mi?searchType=InCity&destinationAddress.city=&destinationAddress.stateProvince=&destinationAddress.country=AU&marriottBrands=WH&showMore=true&nst=paid&cid=PAI_GLB00050CK_GLE000BLSW_GLF000ONTQ&ppc=ppc&pId=intbppc&gad_source=1&gclid=CjwKCAjwzMi_BhACEiwAX4YZUMkTTD77BuXhZutuFHlIufkI4dTUHTWG_CtVJtX5hjCKdAtQbd6fWBoCP8oQAvD_BwE&gclsrc=aw.ds&deviceType=desktop-web&view=list#/0/"
+      },
+      {
+        name: "NH Collection Palazzo Cinquecento",
+        location: "Cairo, Egypt",
+        price: "$130/night",
+        image: "/assests/hotel/nh.jpg",
+        website: "https://www.nh-collection.com/en"
+      },
+      {
+        name: "InterContinental New York Barclay Hotel by IHG",
+        location: "New York, USA",
+        price: "$210/night",
+        image: "/assests/hotel/intercontenental.jpg",
+        website: "https://www.ihg.com/intercontinental/hotels/us/en/new-york/nycha/hoteldetail?Cm_mmc=FM-_-PS-_-B-_-Geo&dp=true&gad_source=1&gclid=CjwKCAjwzMi_BhACEiwAX4YZUI0BVWaWyoCX8wNUnfv-w6jLlc5_iuR69TvvfAbO638A45KXhAdTORoCik0QAvD_BwE"
+      },
+      {
+        name: "The Taj Mahal Palace",
+        location: "Mumbai, India",
+        price: "$125/night",
+        image: "/assests/hotel/tajmumbai.jpg",
+        website: "https://www.tajhotels.com/en-in/hotels/taj-mahal-palace-mumbai"
+      },
+      {
+        name: "TNH Collection Roma Fori Imperiali",
+        location: "Rome, Italy",
+        price: "$180/night",
+        image: "/assests/hotel/nhrome.jpg",
+        website: "https://www.nh-hotels.com/en/hotel/nh-collection-roma-fori-imperiali?campid=8435708&utm_campaign=nh_hotel&utm_source=google&utm_medium=cpc&utm_id=16575947994&utm_source_platform=sa360&gad_source=1&gclid=CjwKCAjwzMi_BhACEiwAX4YZUMg-uutqK_5EW11lBJFSEzSfUntU7GbEqBs1c9zSmiqLq_VZmqhgcBoCUDUQAvD_BwE&gclsrc=aw.ds",
+      },
+      {
+        name: "InterContinental Paris Le Grand by IHG",
+        location: "Paris, France",
+        price: "$220/night",
+        image: "/assests/hotel/inetrparis.jpg",
+        website: "https://www.online-reservations.com/?hotelid=42205&gacc=gmcc&gad_source=1&gclid=CjwKCAjwzMi_BhACEiwAX4YZUP8u-t6s2v2OQxPPjQaK5D8exUE09JTyM_3lvxCyaPtuIVotly2gGhoCc-UQAvD_BwE"
+      },
+      {
+        name: "Taj Palace",
+        location: "Delhi, India",
+        price: "$110/night",
+        image: "/assests/hotel/tajpalace.jpeg",
+        website: "https://www.tajhotels.com/en-in"
+      },
+      {
+        name: "PARKROYAL Langkawi Resort",
+        location: "Los Angeles, USA",
+        price: "$195/night",
+        image: "/assests/hotel/parkroyal.jpg",
+        website: "https://www.panpacific.com/en/hotels-and-resorts/pr-langkawi/offers.html?gad_source=1&gclid=CjwKCAjwzMi_BhACEiwAX4YZUJ2-cLYLCiB4xD7bN1Dm7N_pnCmp2sGb2q0mdlNn1i1WcA9zp7itJRoCO1QQAvD_BwE&gclsrc=aw.ds"
+      },
+      {
+        name: "Hilton Melbourne ",
+        location: "Melbourne, Australia",
+        price: "$185/night",
+        image: "/assests/hotel/hilttonm.jpg",
+        website: "https://www.hilton.com/en/hotels/melamhi-hilton-melbourne-little-queen-street/?WT.mc_id=zLADA0AU1HI2PSH3GGL4INTBPP5dkt6MELAMHI7en_&epid!_&ebuy!&&&&&gad_source=1&gclid=CjwKCAjwzMi_BhACEiwAX4YZUOgOC-4oT1hm6EYRkwj_XZg5u5dtJ5U5LNZh5wvwuhEEjHa2H69pZxoCaZEQAvD_BwE&gclsrc=aw.ds"
+      },
+      {
+        name: "Steigenberger Resort Achti",
+        location: "Luxor, Egypt",
+        price: "$115/night",
+        image: "/assests/hotel/st.jpg",
+        website: "https://hrewards.com/en/steigenberger-resort-achti-luxor"
+      },
+
+      {
+        name: "Fairmont San Francisco",
+        location: "San Francisco, USA",
+        price: "$205/night",
+        image: "/assests/hotel/fairmont.jpg",
+        website: "https://all.accor.com/booking/en/accor/hotels/san-francisco-ca-usa?compositions=1&stayplus=false&order_hotels_by=RECOMMENDATION&snu=false&hideWDR=false&productCode=null&accessibleRooms=false&hideHotelDetails=false&filters=eyJicmFuZHMiOlsiRkFJIl19&utm_term=mafm&gclid=CjwKCAjwzMi_BhACEiwAX4YZUC7mbmIaV_-wVvrAuktN4hHECItcBeocPi1BvgdDmWSgTuFyfrp3zhoCQ0AQAvD_BwE&utm_campaign=ppc-ach-mafm-goo-ncac-en-us-mix-sear&utm_medium=cpc&utm_source=google&utm_content=ncac-en-US-V7028"
+      },
+      {
+        name: "Grand Hotel Parker's",
+        location: "Naples, Italy",
+        price: "$165/night",
+        image: "/assests/hotel/parker.jpg",
+        website: "https://www.guestreservations.com/grand-hotel-parkers-naples/booking?utm_source=google&utm_medium=cpc&utm_campaign=991005079&gad_source=1&gclid=CjwKCAjwzMi_BhACEiwAX4YZUIMxHM-AHKNnoRVeHaJMYzr06XXYvh7MmZPT5RhpERQzmn_fQpxhLxoCfNIQAvD_BwE"
+      },
+
+      {
+        name: "Radisson Blu Hotel ",
+        location: "Alexandria, Egypt",
+        price: "$135/night",
+        image: "/assests/hotel/radisson.jpg",
+        website: "https://www.radissonhotels.com/en-us/hotels/radisson-blu-hotel-convention-center-alexandria"
+      }
+
+    ];
+
+    const hotelCardContainer = document.getElementById('hotelCardContainer');
+    const locationInput = document.getElementById('locationInput');
+
+    function renderHotels(filteredHotels) {
+      hotelCardContainer.innerHTML = ''; // Clear previous results
+
+      if (filteredHotels.length === 0) {
+        hotelCardContainer.innerHTML = `<p class="text-gray-600 text-center col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4">No hotels found for this location.</p>`;
+        return;
+      }
+
+      filteredHotels.forEach(hotel => {
+        const card = document.createElement('div');
+        card.className = "bg-white rounded-lg shadow-lg overflow-hidden transform transition-transform hover:scale-105";
+
+        card.innerHTML = `
+          <img src="${hotel.image}" alt="${hotel.name}" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <h3 class="text-lg font-bold">${hotel.name}</h3>
+            <p class="text-gray-600">${hotel.location}</p>
+            <div class="flex justify-between items-center mt-2">
+              <p class="text-gray-800 font-bold">${hotel.price}</p>
+              <a href="${hotel.website}" target="_blank" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-full text-sm transition-colors">View Details</a>
+            </div>
+          </div>
+        `;
+
+        hotelCardContainer.appendChild(card);
+      });
+    }
+
+    // Initial render
+    renderHotels(hotels);
+
+    // Filter as user types
+    locationInput.addEventListener('input', () => {
+      const query = locationInput.value.trim().toLowerCase();
+      const filtered = hotels.filter(hotel => hotel.location.toLowerCase().includes(query));
+      renderHotels(filtered);
+    });
+  </script>
+  <!-- AngularJS Script for Comment System - Improved -->
+  <script src="/js/hotels.js"></script>
+  <script src="/js/hotels1.js"></script>
+
+</body>
+
+</html>

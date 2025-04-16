@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nature Wonders Travel</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@400;700&family=Lato:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/footer2.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #D4AF37;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            transition: background-color 0.3s ease;
+        }
+
+        nav.scrolled {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .logo {
+            font-family: 'Cormorant Infant', serif;
+            font-size: 1.8rem;
+            color: #D4AF37;
+            font-weight: 700;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #E5E5E5;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #D4AF37;
+        }
+
+        body {
+            font-family: 'Cormorant Infant', serif;
+            background-color: #1E2A38;
+            color: #E5E5E5;
+        }
+
+        .header {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #2C3E50;
+            border-bottom: 2px solid #D4AF37;
+        }
+
+        .header h1 {
+            font-family: 'Cormorant Infant', serif;
+            font-size: 3rem;
+            margin-top: 70px;
+            margin-bottom: 10px;
+            color: whitesmoke;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #9CA3AF;
+
+        }
+
+        .destinations {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 60px 40px;
+            background-color: #1E2A38;
+        }
+
+        .destination {
+            background-color: #8A525B;
+            border-radius: 12px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 4px 12px rgb(81, 47, 53);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .destination:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .destination img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+        }
+
+        .destination h3 {
+            padding: 20px;
+            font-size: 1.5rem;
+            color: whitesmoke;
+        }
+
+        .reasons {
+            text-align: center;
+            padding: 60px 40px;
+            background-color: #2C3E50;
+        }
+
+        .reasons h2 {
+            font-family: 'Cormorant Infant', serif;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: whitesmoke;
+        }
+
+        .reason-cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .reason {
+            background-color: #8A525B;
+            padding: 20px;
+            border-radius: 12px;
+            width: 250px;
+            box-shadow: 0 4px 12px rgb(81, 47, 53);
+            color: #E5E5E5;
+        }
+
+        .reason h3 {
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+            color: whitesmoke;
+        }
+
+        .vacation {
+            display: flex;
+            justify-content: space-between;
+            padding: 60px 40px;
+            background-color: #1E2A38;
+        }
+
+        .vacation-content {
+            max-width: 500px;
+        }
+
+        .vacation-content h2 {
+            font-family: 'Cormorant Infant', serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: whitesmoke;
+        }
+
+        .vacation-content p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            line-height: 1.8;
+            color: #9CA3AF;
+        }
+
+        .book-btn {
+            background-color: #D4AF37;
+            color: #1E2A38;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .book-btn:hover {
+            background-color: #E5C100;
+        }
+
+        .vacation-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .vacation-images img {
+            width: 100%;
+            border-radius: 12px;
+        }
+
+        footer {
+
+            background-color: #2C3E50;
+            color: #9CA3AF;
+            border-top: 2px solid #D4AF37;
+        }
+
+        .bottom-bar {
+            border-top: 1px solid white;
+        }
+    </style>
+</head>
+
+<body>
+    <nav id="navbar">
+        <div class="logo">
+            <img src="/assests/final-logow.svg" alt="Trouvaille Logo">
+        </div>
+        <ul>
+            <li><a href="/html/home.html">Home</a></li>
+            <li><a href="/html/dest.html">Destinations</a></li>
+            <li><a href="#reasons">Why Us</a></li>
+            <li><a href="#vacation">Vacation</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header class="header">
+        <h1>Immersive Experiences</h1>
+        <p>We create luxurious experiences for discerning travelers.</p>
+    </header>
+
+
+    <section class="destinations">
+        <div class="destination">
+            <img src="/assests/activities/island.png" alt="Mountain Adventure">
+            <h3>Mountain Adventure</h3>
+        </div>
+        <div class="destination">
+            <img src="/assests/activities/luxury.png" alt="Peaceful Lakes">
+            <h3>Peaceful Lakes</h3>
+        </div>
+        <div class="destination">
+            <img src="/assests/activities/moose.png" alt="Hiking Experience">
+            <h3>Exuberant Wildlife</h3>
+        </div>
+        <div class="destination">
+            <img src="/assests/activities/food.png" alt="Desert Exploration">
+            <h3>Decadent Food</h3>
+        </div>
+    </section>
+
+
+    <section class="reasons">
+        <h2>Why Choose Us</h2>
+        <div class="reason-cards">
+            <div class="reason">
+                <h3>Luxury & Trust</h3>
+                <p>We provide premium, curated experiences with top-tier service.</p>
+            </div>
+            <div class="reason">
+                <h3>Personalized Support</h3>
+                <p>Our concierge team is available 24/7 to assist you.</p>
+            </div>
+            <div class="reason">
+                <h3>Exclusive Destinations</h3>
+                <p>Discover hidden gems and exotic landscapes tailored to your preferences.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vacation Promo -->
+    <section class="vacation">
+        <div class="vacation-content">
+            <h2>Crafting the Perfect Getaway</h2>
+            <p>Whether you seek serenity or adventure, we curate unforgettable journeys to the world’s most breathtaking
+                destinations.</p>
+            <button class="book-btn">Book Your Escape</button>
+        </div>
+        <div class="vacation-images">
+            <img src="/assests/activities/glide.png" alt="Green Mountain">
+            <img src="/assests/activities/cam.png" alt="Hidden Cave">
+            <img src="/assests/activities/whale.png" alt="Sunlight Canyon">
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="logo-section">
+                <div class="logo">
+                    <img src="/assests/final logow.svg" alt="Trouvaille Logo">
+                </div>
+                <p class="vision">We aspire to weave moments into forever memories through unforgettable adventures</p>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><img src="/assests/Facebook2.svg" alt="Facebook"></a>
+                    <a href="#" aria-label="Twitter"><img src="/assests/Twitter2.svg" alt="Twitter"></a>
+                    <a href="#" aria-label="Instagram"><img src="/assests/Instagram2.svg" alt="Instagram"></a>
+                </div>
+            </div>
+            <div class="about-section">
+                <h3>About</h3>
+                <ul>
+                    <li><a href="#">How it works</a></li>
+                    <li><a href="#">Featured</a></li>
+                    <li><a href="#">Partnership</a></li>
+                    <li><a href="#">Business Relation</a></li>
+                </ul>
+            </div>
+            <div class="community-section">
+                <h3>Community</h3>
+                <ul>
+                    <li><a href="#">Events</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Podcast</a></li>
+                    <li><a href="#">Invite a friend</a></li>
+                </ul>
+            </div>
+            <div class="socials-section">
+                <h3>Socials</h3>
+                <ul>
+                    <li><a href="#">Discord</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Facebook</a></li>
+                </ul>
+            </div>
+            <div class="bottom-bar">
+                <div class="copyright">©2025 TROUVAILLE. All rights reserved</div>
+                <div class="legal">
+                    <a href="#">Privacy & Policy</a>
+                    <a href="#">Terms & Condition</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

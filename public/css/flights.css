@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@400;700&display=swap');
+
+* {
+  font-family: 'Cormorant Infant', serif;
+}
+
+
+
+body {
+  margin: 0;
+  background-color: black;
+  color: white;
+  overflow: auto;
+
+}
+
+
+.hero {
+  height: 100vh;
+  width: 100vw;
+  background-image: url('/assests/hero.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+
+
+.search-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px;
+  border-radius: 50px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  width: 80%;
+  position: absolute;
+  /* Changed from static to absolute */
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  margin: 2rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.input-group label {
+  font-size: 14px;
+  color: #333;
+}
+
+.input-group input,
+.input-group select {
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  background: #f3f3f3;
+}
+
+.input-group input {
+  width: 100%;
+}
+
+.flexB {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.flexB img {
+  margin-right: 0.5rem;
+  height: 1.5rem;
+  width: auto;
+}
+
+#Passengers {
+  width: 3rem;
+}
+
+#class {
+  width: 5.8rem;
+}
+
+.search-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: unset;
+  border-radius: 50%;
+  background-image: url('/assests/searchIcon.svg');
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+}
+
+.search-btn {
+  transform: translateY(-2px);
+  transition: transform 0.3s ease-in-out;
+}
+
+.flight-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  color: black;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(119, 117, 117, 0.2);
+
+  flex: 1;
+  max-width: 400px;
+  min-width: 300px;
+  margin-bottom: 1rem;
+  transition: 0.3s;
+
+}
+
+.flight-item:hover {
+  transform: translateY(-3px);
+  transition: transform 0.3s;
+}
+
+.airline-logo {
+  height: 40px;
+  margin-bottom: 10px;
+  object-fit: contain;
+}
+
+.discount-notice {
+  background: #ffefd3;
+  padding: 8px;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+
+.flight-time {
+  margin: 8px 0;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.flight-price {
+  color: green;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.ticket-pair {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+
+}
+
+.total-price-box {
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: green;
+  display: inline-block;
+  text-align: center;
+}
+
+.total-price-inside {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  color: black;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 16px;
+  flex: 1;
+  min-width: 100px;
+  max-width: 200px;
+}
+
+#totalPrice {
+  font-size: 2rem;
+  color: rgb(101, 140, 142);
+}
+
+#bookNowBtn {
+  color: white;
+  background-color: rgb(101, 140, 142);
+  border: none;
+  border-radius: 2rem;
+  padding: 0.5rem 1.5rem;
+  font-size: 1.2rem;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  transition: box-shadow 200ms cubic-bezier(.02, .01, .47, 1),
+    transform 200ms cubic-bezier(.02, .01, .47, 1);
+}
+
+#bookNowBtn:hover {
+  box-shadow: 0px 8px 24px rgb(101, 140, 142);
+  transform: translateY(-2px);
+}
+
+#results-section {
+  margin: 3rem auto;
+  text-align: center;
+  font-size: 3.5rem;
+}
+
+
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Hide all ticket-pair divs initially */
+.ticket-pair {
+  opacity: 0;
+  transform: translateX(100%);
+  animation: slideIn 0.95s ease-in forwards;
+}
+
+/* Apply delay to make them slide in one by one */
+.ticket-pair:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.ticket-pair:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.ticket-pair:nth-child(3) {
+  animation-delay: 1s;
+}
+
+.ticket-pair:nth-child(4) {
+  animation-delay: 1.5s;
+}

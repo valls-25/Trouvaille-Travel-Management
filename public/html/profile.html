@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>User Profile - Jeremy Rose</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #224856;
+      --accent: #102831;
+      --muted: #90AEAE;
+      --secondary: #874F41;
+      --background: #FBE9D1;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    body {
+      background: #fff;
+      padding: 2rem;
+      color: #333;
+    }
+
+    html,
+    body {
+      height: 150vh;
+      margin: 0;
+      background: rgb(101, 140, 142);
+      background: linear-gradient(0deg, rgba(101, 140, 142, 1) 12%, rgba(13, 81, 82, 1) 98%);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      border: 1px solid #eee;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: var(--primary);
+      color: white;
+    }
+
+    .logo img {
+      width: 40px;
+      height: auto;
+    }
+
+    header .logo {
+      width: 50px;
+      height: auto;
+    }
+
+    header input {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 20px;
+      width: 200px;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-right span {
+      position: relative;
+    }
+
+    .nav-right .notification {
+      background: var(--accent);
+      color: white;
+      font-size: 0.75rem;
+      padding: 0.1rem 0.4rem;
+      border-radius: 50%;
+      position: absolute;
+      top: -8px;
+      right: -10px;
+    }
+
+    .profile {
+      display: flex;
+      padding: 2rem;
+    }
+
+    .left-col {
+      flex: 1;
+      padding-right: 2rem;
+      border-right: 1px solid #eee;
+    }
+
+    .left-col img {
+      width: 100%;
+      max-width: 200px;
+      border-radius: 8px;
+    }
+
+    .left-col .work,
+    .left-col .bookings {
+      margin-top: 2rem;
+    }
+
+    .work p {
+      margin: 0.2rem 0;
+    }
+
+    .badge {
+      background: var(--accent);
+      color: white;
+      padding: 0.2rem 0.5rem;
+      font-size: 0.75rem;
+      border-radius: 4px;
+      margin-left: 10px;
+    }
+
+    .badge.secondary {
+      background: var(--secondary);
+    }
+
+    .bookings ul {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 0.5rem;
+    }
+
+    .bookings li {
+      margin-bottom: 0.3rem;
+      color: var(--primary);
+    }
+
+    .bookings a {
+      color: var(--primary);
+      text-decoration: none;
+
+    }
+
+    .right-col {
+      flex: 2;
+      padding-left: 2rem;
+    }
+
+    .right-col h2 {
+      margin-bottom: 0.2rem;
+      font-size: 1.6rem;
+    }
+
+    .right-col a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .stars {
+      color: #f4b400;
+      margin-bottom: 1rem;
+    }
+
+    .profile-actions {
+      display: flex;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .profile-actions button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    .tab {
+      margin-top: 2rem;
+      border-top: 1px solid #ddd;
+      padding-top: 1rem;
+    }
+
+    .tab h3 {
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .tab p {
+      margin: 0.4rem 0;
+    }
+
+    .tab a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .tab strong {
+      display: inline-block;
+      width: 100px;
+    }
+
+    #points {
+      width: 10px;
+      display: inline;
+    }
+
+    #points span {
+      font-size: 5rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <header>
+      <a href="/html/home.html">
+        <div class="logo">
+          <img src="/assests/final-logow.svg" alt="">
+        </div>
+      </a>
+      <input type="text" placeholder="Search" />
+      <div class="nav-right">
+        <span>Find people</span>
+        <span>Messages <span class="notification">4</span></span>
+        <span>My Contacts</span>
+        <img src="/assests/comments/profilepic4.svg" alt="User" style="width: 40px; border-radius: 50%;">
+      </div>
+    </header>
+
+    <div class="profile">
+      <div class="left-col">
+        <img src="/assests/comments/profilepic4.svg" alt="Jeremy Rose" />
+        <div class="work">
+          <h4>WORK</h4>
+          <p>Spotify New York <span class="badge">Address</span></p>
+          <p>170 William Street</p>
+          <p>New York, NY 10038-78 212-312-51</p>
+          <br />
+          <p>Metropolitan Museum <span class="badge secondary">Address</span></p>
+          <p>525 E 68th Street</p>
+          <p>New York, NY 10651-78 156-187-60</p>
+        </div>
+        <div class="bookings">
+          <h4>Past Bookings</h4>
+          <ul>
+            <li><a href="#"> Sydney</a></li>
+            <li><a href="#"> Emirates</a></li>
+            <li><a href="#"> Mumba</a>i</li>
+            <li><a href="#"> J W Marriot</a></li>
+            <li><a href="#"> The Leela</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="right-col">
+        <h2>Ashmi Vora </h2>
+        <a href="#">Traveller</a>
+        <p>New York, NY</p>
+        <p class="stars">4.6 ★★★★☆</p>
+
+        <div class="profile-actions">
+          <button>Send message</button>
+          <button style="background: var(--accent);">Contacts</button>
+        </div>
+
+        <div class="tab">
+          <h3>About</h3>
+          <p><strong>Phone:</strong> <a href="#">+93 24403747</a></p>
+          <p><strong>Address:</strong> 525 E 68th Street, New York, NY 10651-78 156-187-60</p>
+          <p><strong>Email:</strong> <a href="mailto:ashmivora@gmail.com">ashmivora@gmail.com</a></p>
+          <p><strong>Birthday:</strong> June 5, 2005</p>
+          <p><strong>Gender:</strong> Female</p>
+          <br><br><br><br>
+          <p>
+          <div id="points"><img src="/assests/star.svg" alt=""></div>
+          <strong><span>Points:</span></strong>
+          <span> 500</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

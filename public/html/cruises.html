@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Serenity Seas</title>
+  <link rel="stylesheet" href="/css/cruises.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: "Cormorant Infant", serif;
+    }
+
+    .container {
+      width: 100%;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      background: transparent;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: 2;
+    }
+
+    .logo img {
+      height: 50px;
+    }
+
+    nav a {
+      margin-left: 30px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    /* Hero */
+    .hero {
+      background: url("/assests/curvyyy.jpg") center/cover no-repeat;
+      height: 100vh;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero .content {
+      z-index: 1;
+      padding: 20px;
+      margin-top: -140px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+    }
+
+    .hero .btn {
+      background-color: #e74832;
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .hero .btn:hover {
+      background-color: #8a525b;
+    }
+
+    /* Booking Strip Styles */
+    .booking-strip {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .booking-strip input,
+    .booking-strip select {
+      padding: 10px 14px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      min-width: 140px;
+      background-color: #ffffffcc;
+      color: #224856;
+    }
+
+    .booking-strip button {
+      padding: 10px 20px;
+      background-color: #e74832;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .booking-strip button:hover {
+      background-color: #8a525b;
+    }
+
+    /* Cards Section */
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+      background-color: #f8f8f8;
+    }
+
+    .card {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 250px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .card h3 {
+      color: #e74832;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      margin: 5px 0;
+      color: #333;
+    }
+
+    .card strong {
+      color: #8a525b;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Navbar -->
+    <header>
+      <div class="logo">
+        <a href="/html/home.html">
+          <img src="/assests/final-logow.svg" alt="Trouvaille Logo" />
+        </a>
+      </div>
+      <nav>
+        <a href="#">About Us</a>
+        <a href="#">Yacht Types</a>
+        <a href="#">Our Collection</a>
+        <a href="#">Reviews</a>
+        <a href="#">Contact</a>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="content">
+        <h1>
+          Luxury Yacht Rentals <br />
+          For Your Dream Escape
+        </h1>
+        <p>
+          Indulge in unparalleled luxury and adventure <br />
+          with our premium yacht charter services
+        </p>
+        <br /><br /><br />
+        <a href="#" class="btn">Get Started →</a>
+
+        <!-- Booking Strip -->
+        <div class="booking-strip">
+          <input type="text" placeholder="Departure: Seattle " />
+          <input type="text" placeholder="Arrival: Alaska" />
+          <input type="date" />
+          <input type="date" />
+          <select>
+            <option>2 Guests - 1 Room</option>
+            <option>1 Guest - 1 Room</option>
+            <option>3 Guests - 2 Rooms</option>
+          </select>
+          <select>
+            <option>Economy</option>
+            <option>Business</option>
+            <option>First Class</option>
+          </select>
+          <button>Search</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- JavaScript for Search Functionality -->
+  <script>
+    document
+      .querySelector(".booking-strip button")
+      .addEventListener("click", function () {
+        const locations = [
+          "MGM Cruises",
+          "Luxury Sails",
+          "Percy Winds",
+          "Setting sunset sails",
+          "Habibi Yachts",
+        ];
+        const discountRates = [20, 15, 25, 10, 30];
+        const prices = [5000, 7500, 10000, 12000, 3000];
+
+        // Remove existing cards if any
+        const existingCards = document.querySelector(".card-container");
+        if (existingCards) {
+          existingCards.remove();
+        }
+
+        // Create card container
+        const cardContainer = document.createElement("div");
+        cardContainer.className = "card-container";
+
+        // Generate cards
+        locations.forEach((location, index) => {
+          const card = document.createElement("div");
+          card.className = "card";
+
+          const discount = discountRates[index];
+          const originalPrice = prices[index];
+          const discountedPrice =
+            originalPrice - (originalPrice * discount) / 100;
+
+          card.innerHTML = `
+          <h3>${location}</h3>
+          <p>Original Price: $${originalPrice}</p>
+          <p>Discount: ${discount}%</p>
+          <p><strong>Now: $${discountedPrice}</strong></p>
+          <p>Experience luxury like never before!</p>
+        `;
+
+          cardContainer.appendChild(card);
+        });
+
+        // Append to the body
+        document.body.appendChild(cardContainer);
+      });
+  </script>
+</body>
+
+</html>

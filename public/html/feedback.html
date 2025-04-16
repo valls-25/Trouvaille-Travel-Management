@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Feedback Page</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      text-align: center;
+      padding-top: 2rem;
+    }
+
+    .feedbackDiv {
+      background-color: #224856;
+      width: 40%;
+      margin: auto;
+      padding: 20px;
+      border-radius: 20px;
+    }
+
+    .feedbackDiv button {
+      background-color: #FFFDF6;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+    }
+
+
+
+    .feedbackBox {
+
+      width: 60%;
+      color: black;
+      padding: 15px;
+      margin: auto;
+      margin-bottom: 10px;
+      border-radius: 12px;
+
+    }
+
+    .feedbackBox:hover {
+      transform: translateY(-3px);
+      transition: 0.5s ease-in transform;
+    }
+
+    .feedbackBox:nth-child(odd) {
+      background-color: #FFFDF6;
+      border: 5px solid #224856;
+      box-shadow: rgba(69, 69, 71, 0.5) 0px 7px 29px 0px;
+
+    }
+
+    .feedbackBox:nth-child(even) {
+      background-color: #224856;
+      color: white;
+      border: 3px solid #FFFDF6;
+    }
+
+    .feedbackDiv input,
+    .feedbackDiv textarea,
+    .feedbackDiv button {
+      border-radius: 10px;
+      padding: 5px;
+    }
+
+    .feedbackDiv textarea {
+      width: 60%;
+    }
+
+    .logo img {
+      margin-top: 10px;
+      height: 18rem;
+      width: auto;
+    }
+
+    #date {
+      color: rgb(132, 127, 127);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="logo">
+    <a href="/html/home.html">
+      <img src="/assests/final-logow.svg" alt="Trouvaille Logo">
+    </a>
+  </div>
+  <h1>Leave Your Feedback</h1>
+  <form id="feedbackForm">
+    <div class="feedbackDiv">
+      <input type="text" id="username" placeholder="Your Name" required><br><br>
+      <textarea id="comment" placeholder="Your Feedback" required></textarea><br><br>
+      <button type="submit">Submit Feedback</button>
+    </div>
+
+  </form>
+
+  <h2>Feedback from Users:</h2>
+  <div id="feedbackList"></div>
+
+  <script>
+    document.getElementById('feedbackForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const comment = document.getElementById('comment').value;
+
+      const res = await fetch('/api/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, comment })
+      });
+
+      if (res.ok) {
+        alert("Feedback submitted:)");
+        document.getElementById('feedbackForm').reset();
+        loadFeedback();
+      } else {
+        alert("Error submitting feedback.");
+      }
+    });
+
+    async function loadFeedback() {
+      const res = await fetch('/api/feedback');
+      const data = await res.json();
+      const list = document.getElementById('feedbackList');
+      list.innerHTML = '';
+      data.forEach(item => {
+        const feedbackBox = document.createElement('div');
+        feedbackBox.classList.add('feedbackBox');
+        feedbackBox.innerHTML = `
+         <p><h2>${item.Username}:</h2> ${item.Comment}</p>
+         <span id="date"><small>${new Date(item.SubmittedAt).toLocaleString()}</small><span>`;
+        list.appendChild(feedbackBox);
+
+      });
+    }
+
+    // Load feedback on page load
+    loadFeedback();
+  </script>
+</body>
+
+</html>

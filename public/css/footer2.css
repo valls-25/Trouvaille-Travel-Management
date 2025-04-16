@@ -1,0 +1,169 @@
+footer {
+  background-color: #8b5f65;
+
+  color: #ccc;
+  padding: 40px 0;
+}
+
+footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 30px;
+  padding: 0 20px;
+}
+
+footer h3 {
+  color: #fff;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+footer h3:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  height: 2px;
+  background-color: #486284;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+footer li {
+  margin-bottom: 12px;
+}
+
+footer a {
+  color: #aaa;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  padding-left: 0;
+}
+
+footer a:hover {
+  color: #fff;
+  padding-left: 5px;
+}
+
+.logo-section {
+  margin-bottom: 20px;
+}
+
+.logo img {
+  height: 50px;
+  margin-bottom: 15px;
+}
+
+.vision {
+  color: #aaa;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.social-icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  background-color: #486284;
+  transform: translateY(-7px);
+}
+
+.social-icons img {
+  height: 3rem;
+  width: auto;
+}
+
+.bottom-bar {
+  grid-column: span 4;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #333;
+}
+
+.legal {
+  display: flex;
+  gap: 20px;
+}
+
+@media (max-width: 1024px) {
+  footer .container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .logo-section {
+    grid-column: span 3;
+  }
+
+  .bottom-bar {
+    grid-column: span 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .feedback-container {
+    flex-direction: column;
+    padding: 30px 20px;
+  }
+
+  .left-section,
+  .right-section {
+    width: 100%;
+  }
+
+  footer .container {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .logo-section {
+    grid-column: span 2;
+  }
+
+  .bottom-bar {
+    grid-column: span 2;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .legal {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  footer .container {
+    grid-template-columns: 1fr;
+  }
+
+  .logo-section,
+  .bottom-bar {
+    grid-column: span 1;
+  }
+
+
+}

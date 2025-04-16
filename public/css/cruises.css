@@ -1,0 +1,115 @@
+body {
+  margin: 0;
+  font-family: 'Cormorant Infant', serif;
+}
+
+.container {
+  width: 100%;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  background: transparent;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.logo img {
+  height: 50px;
+}
+
+nav a {
+  margin-left: 30px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* Hero */
+.hero {
+  background: url('/assests/cruii.png') center/cover no-repeat;
+  height: 100vh;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.hero .content {
+  z-index: 1;
+  padding: 20px;
+  margin-top: -140px;
+  /* Move it up */
+}
+
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.3rem;
+  margin-bottom: 30px;
+}
+
+.hero .btn {
+  background-color: #E74832;
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.hero .btn:hover {
+  background-color: #8A525B;
+}
+
+/* 🧡 Booking Strip Styles */
+.booking-strip {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.booking-strip input,
+.booking-strip select {
+  padding: 10px 14px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  min-width: 140px;
+  background-color: #ffffffcc;
+  /* Transparent white */
+  color: #224856;
+}
+
+.booking-strip button {
+  padding: 10px 20px;
+  background-color: #E74832;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.booking-strip button:hover {
+  background-color: #8A525B;
+}
