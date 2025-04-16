@@ -1,6 +1,7 @@
 Trouvaille is a full-featured travel management web application that lets users book flights, hotels, buses, cruises, and more — all from one intuitive platform. Designed with modern web technologies, it combines functionality, usability, and clean design to deliver a seamless travel planning experience.
 
 Features
+
 1.Multi-Transport Booking
 Book hotels, flights, buses, cruises, and airplanes directly from the site.
 
